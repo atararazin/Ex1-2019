@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ex1_2019
+namespace Ex1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            d
+            
         }
     }
 }
