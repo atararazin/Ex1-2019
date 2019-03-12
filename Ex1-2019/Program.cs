@@ -10,6 +10,7 @@ namespace Ex1_2019
     {
         static void Main(string[] args)
         {
+            d
         }
     }
 }
