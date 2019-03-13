@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
 
 namespace Ex1
 {
@@ -20,29 +21,30 @@ namespace Ex1
             get { return type; }
         }
         public event EventHandler<double> OnCalculate;
-        private IMission m;
+        private Queue<Function> queueOfFuncs;
 
         public ComposedMission(string name)
         {
             this.name = name;
             this.type = "Composed";
+            this.queueOfFuncs = new Queue<Function>();
         }
 
         public double Calculate(double value)
         {
-            throw new NotImplementedException();
+            double result = this.queueOfFuncs.Dequeue().Invoke(value);
+            Function curr;
+            while(this.queueOfFuncs.Count != 0)
+            {
+                curr = this.queueOfFuncs.Dequeue();
+                result = curr.Invoke(result);
+            }
+            return result;
         }
 
-        public ComposedMission Add(Mission missionToAdd)
+        public ComposedMission Add(Function missionToAdd)
         {
-            if (this.m == null)
-            {
-                this.m = new SingleMission(missionToAdd, this.name);
-            }
-            else
-            {
-                //add to list.
-            }
+            this.queueOfFuncs.Enqueue(missionToAdd);
             return this;
         }
     }

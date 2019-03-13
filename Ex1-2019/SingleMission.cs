@@ -21,19 +21,24 @@ namespace Ex1
         }
 
         public event EventHandler<double> OnCalculate;
-        private Mission mission;
+        private Function mission;
 
         //constructor
-        public SingleMission(Mission mission, String Name)
+        public SingleMission(Function mission, String Name)
         {
             this.mission = mission;
             this.name = Name;
             this.type = "Single";
         }
 
-
+        /// <summary>
+        /// the execute part of the command design pattern
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>the value after calculated</returns>
         public double Calculate(double value)
         {
+            //activate eventhandler
             return this.mission.Invoke(value);
         }
     }
