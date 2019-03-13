@@ -22,8 +22,12 @@ namespace Ex1
 
         public event EventHandler<double> OnCalculate;
         private Function mission;
-
-        //constructor
+        /// <summary>
+        /// constructor. gets mission and name as params, 
+        /// type gets defines here because it's always "Single"
+        /// </summary>
+        /// <param name="mission"></param>
+        /// <param name="Name"></param>
         public SingleMission(Function mission, String Name)
         {
             this.mission = mission;
@@ -32,15 +36,15 @@ namespace Ex1
         }
 
         /// <summary>
-        /// the execute part of the command design pattern
+        /// the execute part of the command design pattern.
+        /// also activates the EventHandler
         /// </summary>
         /// <param name="value"></param>
         /// <returns>the value after calculated</returns>
         public double Calculate(double value)
         {
-            //activate eventhandler
             double result = this.mission.Invoke(value);
-            OnCalculate?.Invoke(this, result);
+            OnCalculate?.Invoke(this, result); //activates event handler
             return result;
         }
     }

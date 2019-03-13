@@ -36,6 +36,10 @@ namespace Ex1
             }
         }
 
+        /// <summary>
+        /// return the list of missions' names in string form
+        /// </summary>
+        /// <returns>the list of strings</returns>
         public List<string> getAllMissions()
         {
             return new List<string>(this.namesToFuncDict.Keys);
