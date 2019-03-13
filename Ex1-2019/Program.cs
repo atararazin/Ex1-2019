@@ -77,7 +77,7 @@ namespace Ex1
 
             ComposedMission mission4 = new ComposedMission("mission4")
                 .Add(funcList["Triple"])
-                .Add(funcList["Stam"])              // Notice that this function does not exist and still it works
+                .Add(funcList["Stam"]) // Notice that this function does not exist and still it works
                 .Add(funcList["Plus2"]);
 
             PrintAvailableFunctions(funcList);

@@ -15,6 +15,10 @@ namespace Ex1
         {
             get
             {
+                if (!this.namesToFuncDict.ContainsKey(index))
+                {
+                    this.namesToFuncDict[index] = val => val;
+                }
                 return namesToFuncDict[index];
             }
             set
