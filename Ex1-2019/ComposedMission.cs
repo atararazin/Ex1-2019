@@ -32,14 +32,15 @@ namespace Ex1
 
         public double Calculate(double value)
         {
-            OnCalculate?.Invoke(this, value);
-            double result = this.queueOfFuncs.Dequeue().Invoke(value);
+            Queue<Function> tempQ = new Queue<Function>(this.queueOfFuncs);
+            double result = tempQ.Dequeue().Invoke(value);
             Function curr;
-            while(this.queueOfFuncs.Count != 0)
+            while(tempQ.Count != 0)
             {
-                curr = this.queueOfFuncs.Dequeue();
+                curr = tempQ.Dequeue();
                 result = curr.Invoke(result);
             }
+            OnCalculate?.Invoke(this, result);
             return result;
         }
 

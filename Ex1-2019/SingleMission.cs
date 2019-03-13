@@ -39,8 +39,9 @@ namespace Ex1
         public double Calculate(double value)
         {
             //activate eventhandler
-            OnCalculate?.Invoke(this, value);
-            return this.mission.Invoke(value);
+            double result = this.mission.Invoke(value);
+            OnCalculate?.Invoke(this, result);
+            return result;
         }
     }
 }
