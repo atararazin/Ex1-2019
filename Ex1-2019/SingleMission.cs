@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Ex1
 {
+    /// <summary>
+    /// SingleMission - can calculate a single function and not more. gets in its constructor a name and 
+    /// a funciton/mission that it can calculate.
+    /// </summary>
     public class SingleMission : IMission
     {
         private string name;
@@ -37,7 +41,8 @@ namespace Ex1
 
         /// <summary>
         /// the execute part of the command design pattern.
-        /// also activates the EventHandler
+        /// also activates the EventHandler.
+        /// this method calculates the final result
         /// </summary>
         /// <param name="value"></param>
         /// <returns>the value after calculated</returns>

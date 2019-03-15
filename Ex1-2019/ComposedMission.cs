@@ -7,6 +7,11 @@ using System.Collections.Specialized;
 
 namespace Ex1
 {
+    /// <summary>
+    /// this class is a Composed mission. it has a name which is gets at the construction and then using
+    /// the biulder desgin pattern creates the other missions. the biulder method is called Add(). 
+    /// the class can calculate the final result using a queue.
+    /// </summary>
     public class ComposedMission : IMission
     {
         private string name;
@@ -21,7 +26,7 @@ namespace Ex1
             get { return type; }
         }
         public event EventHandler<double> OnCalculate;
-        private Queue<Function> queueOfFuncs;
+        private Queue<Function> queueOfFuncs;//used a Queue because a composed mission is calculated in a FILO manner
 
         /// <summary>
         /// Constructor. creates the queue of functions and defines the 
@@ -35,9 +40,18 @@ namespace Ex1
             this.queueOfFuncs = new Queue<Function>();
         }
 
+        /// <summary>
+        /// implemented method from interface IMission. 
+        /// make a deep copy of the queue so that it doenst affect the actul member.
+        /// then using FILO, calculates the equation.
+        /// Activates the EventHandler.
+        /// This method is the execute part of the Command design pattern. 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>result</returns>
         public double Calculate(double value)
         {
-            Queue<Function> tempQ = new Queue<Function>(this.queueOfFuncs);
+            Queue<Function> tempQ = new Queue<Function>(this.queueOfFuncs);//deep copy of the queue
             double result = tempQ.Dequeue().Invoke(value);
             Function curr;
             while(tempQ.Count != 0)

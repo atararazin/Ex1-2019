@@ -8,30 +8,40 @@ namespace Ex1
 {
     public delegate double Function(double x);
 
+    /// <summary>
+    /// the container for the functions. Uses csharp's indexer so that it can comfortably be indexed.
+    /// each name is mapped to a Function (see above delegate), using a dictionary.
+    /// This class has the ability to return all existing missions.
+    /// </summary>
     public class FunctionsContainer
     {
         public Dictionary<string, Function> namesToFuncDict = new Dictionary<string, Function>();
+        /// <summary>
+        /// indexer. Every index is mapped to its Function (a pointer to a function).
+        /// has set and get properties.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public Function this[string index]
         {
             get
             {
-                if (!this.namesToFuncDict.ContainsKey(index))
+                if (!this.namesToFuncDict.ContainsKey(index))//if the index doesn't exist assign a default to it
                 {
-                    this.namesToFuncDict[index] = val => val;
+                    this.namesToFuncDict[index] = val => val;//default function
                 }
                 return namesToFuncDict[index];
             }
             set
             {
-                //check the specs to see what exactly they want.
-                if (this.namesToFuncDict.ContainsKey(index))
+                if (this.namesToFuncDict.ContainsKey(index))//checks if index exists
                 {
-                    this.namesToFuncDict[index] = value;
+                    this.namesToFuncDict[index] = value;//have it point to a new value
                 }
-                else
+                else//new index
                 {
-                    Function mission = new Function(value);
-                    namesToFuncDict.Add(index, value);
+                    Function mission = new Function(value);//create new delegate
+                    namesToFuncDict.Add(index, value);//add to dictionary
                 }
             }
         }
